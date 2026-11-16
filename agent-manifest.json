@@ -1,0 +1,83 @@
+{
+  "brand": "Lantern Lane Repair Café Assistant",
+  "networks": [
+    {
+      "name": "lantern_lane_repair_cafe",
+      "front_man": "repair_cafe_assistant",
+      "hocon": "./lantern_lane_repair_cafe.network.json",
+      "description": "Check whether the café can take your broken item, find a session with a free fixer, and book or cancel a repair slot.",
+      "tags": [
+        "agentified-website"
+      ],
+      "sample_queries": [
+        "Can you fix a microwave that sparks?",
+        "My lamp flickers. Which sessions still have a small electrical slot?",
+        "Put my torn jacket zip in the booking form for the January 9 session.",
+        "Book the 2027-01-09 session for my wobbly kitchen chair. I'm Sam Ortiz, sam.ortiz@example.com, one leg is loose.",
+        "Cancel booking LL-ABCD for sam.ortiz@example.com.",
+        "Can you come to my house to fix my washing machine?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Local agents and page-local actions only."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "lantern_lane_repair_cafe",
+    "front_man": "repair_cafe_assistant",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#2f6b3a"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "lantern_lane_repair_cafe",
+        "front_man": "repair_cafe_assistant",
+        "aliases": [
+          "lantern_lane_repair_cafe",
+          "repair_cafe_assistant"
+        ],
+        "url": "lantern_lane_repair_cafe"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_cafe_state",
+      "check_item",
+      "find_sessions",
+      "fill_booking_form",
+      "look_up_booking",
+      "place_booking",
+      "cancel_booking"
+    ]
+  }
+}

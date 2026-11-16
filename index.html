@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Lantern Lane Repair Café: free volunteer repair sessions. Check what we can fix and book a fixer slot.">
+    <title>Lantern Lane Repair Café</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assistant.css">
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="site.js"></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="index.html">Lantern Lane <span>Repair Café</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#what">What we fix</a>
+        <a href="#sessions">Sessions</a>
+        <a href="#book">Book</a>
+        <a href="#manage">Cancel</a>
+        <a href="#assistant">Ask us</a>
+      </nav>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="welcome">
+        <h1 id="welcome">Don't throw it away. Bring it to the table.</h1>
+        <p>Volunteer fixers help you repair lamps, clothes, bikes, chairs, headphones and more, for free. You stay with your item and learn how it was fixed.</p>
+        <p class="note">Demo site: a fictional café. Bookings are simulated and stored only in this browser.</p>
+      </section>
+
+      <section id="what" aria-labelledby="what-heading">
+        <h2 id="what-heading">Can we fix it?</h2>
+        <form id="check-form">
+          <label for="check-desc">What is it, and what's wrong?</label>
+          <input id="check-desc" required placeholder="e.g. desk lamp flickers when I touch it">
+          <label for="check-category">Category (optional)</label>
+          <select id="check-category"><option value="">Not sure</option></select>
+          <button type="submit">Check</button>
+        </form>
+        <p id="check-result" class="msg" role="status"></p>
+        <details>
+          <summary>Things we can't take, and why</summary>
+          <ul id="refused-list">
+            <li>Gas appliances — they need a registered gas engineer.</li>
+            <li>Microwave ovens and tube (CRT) TVs — they store dangerous voltage.</li>
+            <li>Swollen or damaged lithium batteries — fire risk.</li>
+            <li>Large appliances (washers, fridges, ovens) — they don't fit our tables.</li>
+            <li>Firearms, airguns and weapons, and medical devices.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section id="sessions" aria-labelledby="sessions-heading">
+        <h2 id="sessions-heading">Upcoming sessions</h2>
+        <table>
+          <thead><tr><th>Date</th><th>Time</th><th>Venue</th><th>Free fixer slots</th></tr></thead>
+          <tbody id="sessions-body"></tbody>
+        </table>
+        <noscript><p>Please turn on JavaScript to see sessions, or email hello@lanternlane-repair.example.</p></noscript>
+      </section>
+
+      <div class="two-col">
+        <section id="book" class="panel" aria-labelledby="book-heading">
+          <h2 id="book-heading">Book a fixer slot</h2>
+          <form id="book-form" novalidate>
+            <label for="book-session">Session</label>
+            <select id="book-session" required><option value="">Choose a session</option></select>
+            <label for="book-category">Category</label>
+            <select id="book-category" required><option value="">Choose a category</option></select>
+            <label for="book-item">Item</label>
+            <input id="book-item" required>
+            <label for="book-problem">What's wrong?</label>
+            <textarea id="book-problem" rows="2"></textarea>
+            <label for="book-name">Your name</label>
+            <input id="book-name" autocomplete="name" required>
+            <label for="book-email">Email</label>
+            <input id="book-email" type="email" autocomplete="email" required>
+            <button type="submit">Book the slot</button>
+          </form>
+          <p id="book-result" class="msg" role="status"></p>
+          <p id="latest-booking" class="note"></p>
+        </section>
+
+        <section id="manage" class="panel" aria-labelledby="manage-heading">
+          <h2 id="manage-heading">Cancel a booking</h2>
+          <form id="cancel-form">
+            <label for="cancel-code">Booking code</label>
+            <input id="cancel-code" required placeholder="LL-XXXX">
+            <label for="cancel-email">Email on the booking</label>
+            <input id="cancel-email" type="email" required>
+            <button type="submit">Cancel booking</button>
+          </form>
+          <p id="cancel-result" class="msg" role="status"></p>
+          <h3>House rules</h3>
+          <ul>
+            <li>Repairs are free. Donations to cover parts and tea are welcome but never required.</li>
+            <li>You stay with your item; we don't keep items overnight.</li>
+            <li>One booked item per person per session.</li>
+            <li>Fixers are volunteers and can't guarantee a repair.</li>
+            <li>We don't stock spare parts; the fixer writes down what to buy.</li>
+            <li>Cancel at least 24 hours ahead so the slot can go to someone else.</li>
+          </ul>
+        </section>
+      </div>
+
+      <section id="assistant" class="assistant" aria-labelledby="assistant-heading">
+        <h2 id="assistant-heading">Ask Lantern Lane Repair Café</h2>
+        <p>Describe what's broken: the assistant checks whether we can take it, finds a session with a free fixer, and books or cancels your slot.</p>
+        <p class="assistant-note">Your messages and this page's data go to the LLM provider you choose in the settings below. You confirm anything that cannot be undone before it happens.</p>
+        <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the page directly.</p>
+        <div id="agent-app">
+          <div data-ns-slot="header"></div>
+          <div class="assistant-panels">
+            <div data-ns-slot="chat"></div>
+            <div data-ns-slot="agents"></div>
+          </div>
+          <div data-ns-slot="settings"></div>
+        </div>
+      </section>
+    </main>
+    <footer><p>Lantern Lane Repair Café · hello@lanternlane-repair.example · Walk-ins welcome in the last hour if a fixer is free.</p></footer>
+  </body>
+</html>
