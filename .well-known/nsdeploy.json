@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "lantern_lane_repair_cafe",
+      "front_man": "repair_cafe_assistant",
+      "aliases": [
+        "lantern_lane_repair_cafe",
+        "repair_cafe_assistant"
+      ],
+      "url": "lantern_lane_repair_cafe"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}
