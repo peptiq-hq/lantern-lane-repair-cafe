@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "lantern_lane_repair_cafe"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}
